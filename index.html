@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Hub</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="header">
+
+        <div class="logo">
+            🎓 Student Hub
+        </div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#subjects">Subjects</a>
+            <a href="#notes">Notes</a>
+            <a href="#planner">Planner</a>
+        </nav>
+
+        <button id="darkModeBtn">
+            🌙
+        </button>
+
+    </header>
+
+
+    <!-- =========================
+         HOME
+    ========================== -->
+
+    <main>
+
+        <section id="home" class="hero">
+
+            <p class="welcome">
+                Welcome to Student Hub 👋
+            </p>
+
+            <h1>
+                Learn Smarter.<br>
+                Study Better. 🚀
+            </h1>
+
+            <p class="hero-text">
+                Notes, formulas, questions and useful study tools
+                — everything a student needs in one place.
+            </p>
+
+
+            <!-- SEARCH -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search a topic, chapter or subject..."
+                >
+
+                <button id="searchBtn">
+                    🔎 Search
+                </button>
+
+            </div>
+
+            <div id="searchResult"></div>
+
+        </section>
+
+
+        <!-- =========================
+             SUBJECTS
+        ========================== -->
+
+        <section id="subjects" class="section">
+
+            <h2>📚 Explore Subjects</h2>
+
+            <p class="section-subtitle">
+                Choose a subject and start learning.
+            </p>
+
+
+            <div class="subject-grid">
+
+                <div class="subject-card" onclick="openSubject('Physics')"></div>
+                    <span>⚡</span>
+                    <h3>Physics</h3>
+                    <p>Concepts, formulas & numericals</p>
+                </div>
+
+                <div class="subject-card" onclick="openSubject('Chemistry')"></div>
+                    <span>🧪</span>
+                    <h3>Chemistry</h3>
+                    <p>Reactions, concepts & equations</p>
+                </div>
+
+                <div class="subject-card" onclick="openSubject('Mathematics')"></div>
+                    <span>📐</span>
+                    <h3>Mathematics</h3>
+                    <p>Formulas, examples & practice</p>
+                </div>
+
+                <div class="subject-card" onclick="openSubject('Biology')"></div>
+                    <span>🧬</span>
+                    <h3>Biology</h3>
+                    <p>Diagrams, concepts & notes</p>
+                </div>
+
+                <div class="subject-card" onclick="openSubject('English')"></div>
+                    <span>📖</span>
+                    <h3>English</h3>
+                    <p>Grammar, literature & vocabulary</p>
+                </div>
+
+                <div class="subject-card" onclick="openSubject('Social Science')"></div>
+                    <span>🌍</span>
+                    <h3>Social Science</h3>
+                    <p>History, Geography & Civics</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUICK TOOLS
+        ========================== -->
+
+        <section class="section">
+
+            <h2>🛠️ Student Tools</h2>
+
+            <p class="section-subtitle">
+                Useful tools for everyday study.
+            </p>
+
+
+            <div class="tools-grid">
+
+                <div class="tool-card" id="notes">
+                    📝
+                    <h3>Notes</h3>
+                    <p>Chapter-wise study notes</p>
+                </div>
+
+                <!-- =====================================================
+     QUIZ SECTION
+===================================================== -->
+
+<section class="quiz-section" id="quizSection">
+
+    <div class="quiz-header">
+        <span class="quiz-badge">📝 TEST YOURSELF</span>
+
+        <h2>Quiz Zone</h2>
+
+        <p>
+            Test your knowledge with quick subject-wise quizzes.
+        </p>
+    </div>
+
+    <!-- QUIZ START SCREEN -->
+    <div class="quiz-start" id="quizStart">
+
+        <div class="quiz-icon">🧠</div>
+
+        <h3>Ready for a Quiz?</h3>
+
+        <p>
+            Choose a subject and test your knowledge.
+        </p>
+
+        <select id="quizSubject">
+            <option value="">Select Subject</option>
+            <option value="Physics">⚡ Physics</option>
+            <option value="Chemistry">🧪 Chemistry</option>
+            <option value="Mathematics">📐 Mathematics</option>
+            <option value="Biology">🧬 Biology</option>
+            <option value="English">📖 English</option>
+            <option value="Social Science">🌍 Social Science</option>
+        </select>
+
+        <button id="startQuizBtn">
+            🚀 Start Quiz
+        </button>
+
+
+        <select id="quizChapter" disabled>
+    <option value="">Select Chapter</option>
+</select>
+
+    </div>
+
+
+    <!-- QUIZ BOX -->
+    <div class="quiz-box" id="quizBox" style="display:none;">
+
+        <div class="quiz-top">
+
+            <span id="quizSubjectName">
+                Subject
+            </span>
+
+            <span id="questionNumber">
+                Question 1/10
+            </span>
+
+        </div>
+
+        <div class="quiz-progress">
+            <div id="quizProgressBar"></div>
+        </div>
+
+        <h3 id="questionText">
+            Question will appear here
+        </h3>
+
+        <div id="optionsContainer">
+            <!-- Options will appear here -->
+        </div>
+
+        <button id="nextQuestionBtn" disabled>
+            Next ➜
+        </button>
+
+    </div>
+
+
+    <!-- QUIZ RESULT -->
+    <div class="quiz-result" id="quizResult" style="display:none;">
+
+        <div class="result-icon">🎉</div>
+
+        <h3>Quiz Completed!</h3>
+
+        <p>Your Score</p>
+
+        <div class="score-circle">
+            <span id="finalScore">0/10</span>
+        </div>
+
+        <p id="resultMessage">
+            Great job!
+        </p>
+
+        <button id="restartQuizBtn">
+            🔄 Try Again
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =====================================================
+     DAILY CHALLENGE
+===================================================== -->
+
+<section class="daily-challenge" id="dailyChallenge">
+
+    <div class="daily-header">
+        <span class="daily-badge">🔥 DAILY CHALLENGE</span>
+
+        <h2>Today's Challenge</h2>
+
+        <p>
+            Complete 5 questions every day and improve your knowledge!
+        </p>
+    </div>
+
+    <div class="daily-card">
+
+        <div class="daily-icon">
+            🧠
+        </div>
+
+        <h3>Ready for Today's Challenge?</h3>
+
+        <p>
+            Answer 5 quick questions and earn your daily score.
+        </p>
+
+        <div class="daily-stats">
+
+            <div class="daily-stat">
+                <span>🔥</span>
+                <strong id="dailyStreak">0</strong>
+                <small>Day Streak</small>
+            </div>
+
+            <div class="daily-stat">
+                <span>🏆</span>
+                <strong id="bestScore">0/5</strong>
+                <small>Best Score</small>
+            </div>
+
+            <div class="daily-stat">
+                <span>📅</span>
+                <strong id="challengeStatus">Ready</strong>
+                <small>Status</small>
+            </div>
+
+        </div>
+
+        <button id="startDailyChallenge">
+            🚀 Start Today's Challenge
+        </button>
+
+    </div>
+
+    <!-- =====================================================
+     PROGRESS DASHBOARD
+===================================================== -->
+
+<section class="progress-dashboard" id="progressDashboard">
+
+    <div class="progress-header">
+        <span class="progress-badge">📊 MY PROGRESS</span>
+
+        <h2>Progress Dashboard</h2>
+
+        <p>
+            Track your learning progress and quiz performance.
+        </p>
+    </div>
+
+    <div class="progress-grid">
+
+        <!-- Total Quizzes -->
+        <div class="progress-card">
+            <div class="progress-card-icon">📝</div>
+            <h3 id="totalQuizzes">0</h3>
+            <p>Quizzes Completed</p>
+        </div>
+
+        <!-- Best Score -->
+        <div class="progress-card">
+            <div class="progress-card-icon">🏆</div>
+            <h3 id="progressBestScore">0/5</h3>
+            <p>Best Daily Score</p>
+        </div>
+
+        <!-- Streak -->
+        <div class="progress-card">
+            <div class="progress-card-icon">🔥</div>
+            <h3 id="progressStreak">0</h3>
+            <p>Day Streak</p>
+        </div>
+
+        <!-- Average -->
+        <div class="progress-card">
+            <div class="progress-card-icon">⭐</div>
+            <h3 id="averageScore">0%</h3>
+            <p>Average Score</p>
+        </div>
+
+    </div>
+
+    <!-- Progress Bar -->
+
+    <div class="overall-progress">
+
+        <div class="overall-progress-top">
+            <h3>Overall Progress</h3>
+            <span id="overallProgressText">0%</span>
+        </div>
+
+        <div class="overall-progress-bar">
+            <div id="overallProgressFill"></div>
+        </div>
+
+    </div>
+
+    <!-- Achievement -->
+
+    <div class="achievement-card">
+
+        <div class="achievement-icon">🎯</div>
+
+        <div>
+            <h3 id="achievementTitle">
+                Keep Going!
+            </h3>
+
+            <p id="achievementText">
+                Complete quizzes to unlock achievements.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     QUICK NOTES
+========================= -->
+
+<section class="quick-notes" id="quickNotes">
+
+    <div class="notes-header">
+        <span class="notes-badge">📝 QUICK NOTES</span>
+        <h2>My Notes</h2>
+        <p>Write and save your important study notes.</p>
+    </div>
+
+    <div class="notes-box">
+
+        <input
+            type="text"
+            id="noteTitle"
+            placeholder="Note title..."
+        >
+
+        <textarea
+            id="noteText"
+            placeholder="Write your notes here..."
+        ></textarea>
+
+        <button id="saveNoteBtn">
+            💾 Save Note
+        </button>
+
+    </div>
+
+    <div class="notes-list" id="notesList">
+        <p class="no-notes">No notes saved yet 📚</p>
+    </div>
+
+</section>
+
+    <!-- DAILY QUIZ BOX -->
+
+    <div class="daily-quiz-box" id="dailyQuizBox" style="display:none;">
+
+        <div class="daily-quiz-top">
+
+            <span id="dailyQuestionNumber">
+                Question 1/5
+            </span>
+
+            <span id="dailyScore">
+                Score: 0
+            </span>
+
+        </div>
+
+        <div class="daily-progress">
+            <div id="dailyProgressBar"></div>
+        </div>
+
+        <h3 id="dailyQuestion">
+            Question will appear here
+        </h3>
+
+        <div id="dailyOptions">
+            <!-- Options appear here -->
+        </div>
+
+        <button id="dailyNextBtn" disabled>
+            Next ➜
+        </button>
+
+    </div>
+
+    <!-- DAILY RESULT -->
+
+    <div class="daily-result" id="dailyResult" style="display:none;">
+
+        <div class="daily-result-icon">
+            🎉
+        </div>
+
+        <h3>Challenge Completed!</h3>
+
+        <p>Your Daily Score</p>
+
+        <div class="daily-score-circle">
+            <span id="dailyFinalScore">0/5</span>
+        </div>
+
+        <p id="dailyResultMessage">
+            Great job!
+        </p>
+
+        <button id="dailyTryAgain">
+            🔄 Try Again
+        </button>
+
+    </div>
+
+</section>
+
+
+                <div class="tool-card">
+                    🧮
+                    <h3>Formula Hub</h3>
+                    <p>Important formulas at one place</p>
+                </div>
+
+                <div class="tool-card">
+                    ❓
+                    <h3>Question Bank</h3>
+                    <p>Practice important questions</p>
+                </div>
+
+                <div class="tool-card">
+                    ⏱️
+                    <h3>Study Timer</h3>
+                    <p>Focus and study effectively</p>
+                </div>
+
+                <div class="tool-card" id="planner">
+                    📅
+                    <h3>Study Planner</h3>
+                    <p>Plan your daily study targets</p>
+                </div>
+
+                <div class="tool-card">
+                    📊
+                    <h3>Progress Tracker</h3>
+                    <p>Track your learning progress</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             WHY STUDENT HUB
+        ========================== -->
+
+        <section class="why-section">
+
+            <h2>✨ Why Student Hub?</h2>
+
+            <div class="features">
+
+                <div>
+                    🔎
+                    <h3>Easy Search</h3>
+                    <p>Find study topics quickly.</p>
+                </div>
+
+                <div>
+                    📚
+                    <h3>Organized Content</h3>
+                    <p>Everything arranged subject-wise.</p>
+                </div>
+
+                <div>
+                    🚀
+                    <h3>Study Better</h3>
+                    <p>Useful tools to improve your study routine.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <h3>🎓 Student Hub</h3>
+
+        <p>
+            Your smart study companion.
+        </p>
+
+        <p>
+            © 2026 Student Hub
+        </p>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
